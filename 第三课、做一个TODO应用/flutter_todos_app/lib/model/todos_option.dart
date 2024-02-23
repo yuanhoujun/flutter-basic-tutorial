@@ -1,0 +1,4 @@
+enum TodosOption {
+  markAllAsCompleted,
+  clearCompleted
+}
