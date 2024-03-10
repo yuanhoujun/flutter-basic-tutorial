@@ -5,13 +5,7 @@
 
 # 视频教程
 ### B站
-* [第一课、认识Flutter](https://www.bilibili.com/video/BV1oA4m1g7uN/?vd_source=7b89b7819b83ea99c40e7d2d7342d50d)
-* [第二课、初识Widget](https://www.bilibili.com/video/BV1xy421z7wU/?vd_source=7b89b7819b83ea99c40e7d2d7342d50d)
-* [第三课、做一个TODO应用 上](https://www.bilibili.com/video/BV1W2421F7PU/)
-* [第三课、做一个TODO应用 中上](https://www.bilibili.com/video/BV1rx421Z799/)
-* [第三课、做一个TODO应用 中下](https://www.bilibili.com/video/BV1Dx4y1k79M/)
-* [第三课、做一个TODO应用 下](https://www.bilibili.com/video/BV1s1421f7RB/)
-* [第四课、Colors & Fonts & Container & Margin & Padding](https://www.bilibili.com/video/BV1ZJ4m1Y7bT/)
+* [跟我一起学Flutter](https://www.bilibili.com/video/BV1oA4m1g7uN/)
 
 # 案例
 * [象棋助手（跨平台象棋打谱和学习软件首选）](https://cca.yhdm360.cn)
