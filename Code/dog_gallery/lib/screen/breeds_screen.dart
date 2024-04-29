@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import '../model/breed.dart';
+import 'breed_detail_screen.dart';
 
 class BreedsScreen extends StatefulWidget {
   const BreedsScreen({super.key});
@@ -32,6 +33,9 @@ class _BreedsState extends State<BreedsScreen> {
     final networkRepository = NetworkRepository();
     final breeds = await networkRepository.getBreeds(
         pageNumber: _pageNumber, pageSize: _pageSize);
+    if (!mounted) {
+      return;
+    }
     setState(() {
       _breeds.addAll(breeds);
     });
@@ -126,17 +130,24 @@ class _BreedsState extends State<BreedsScreen> {
   }
 
   Widget _buildBreedItem(Breed breed) {
-    return Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildImage(breed.image.url),
-            const SizedBox(height: 5),
-            _buildBreedName(breed.name),
-            _buildIntro(breed.bredFor ?? "")
-          ],
-        ));
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return BreedDetailScreen(breed);
+        }));
+      },
+      child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildImage(breed.image.url),
+              const SizedBox(height: 5),
+              _buildBreedName(breed.name),
+              _buildIntro(breed.bredFor ?? "")
+            ],
+          )),
+    );
   }
 
   Widget _buildImage(String url) {

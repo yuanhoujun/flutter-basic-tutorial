@@ -1,5 +1,7 @@
 import 'package:dog_gallery/http/network_repository.dart';
+import 'package:dog_gallery/manager/user_manager.dart';
 import 'package:dog_gallery/model/dog_image.dart';
+import 'package:dog_gallery/screen/login_screen.dart';
 import 'package:dog_gallery/widget/loading_dialog.dart';
 import 'package:dog_gallery/widget/tips_dialog.dart';
 import 'package:flutter/material.dart';
@@ -87,6 +89,16 @@ class _DogsState extends State<DogsScreen> {
   }
 
   void _addToFavorites(String imageId) async {
+    final isLogin = await UserManager().isLogin;
+    if (!isLogin) {
+      if (!mounted) return;
+
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return const LoginScreen();
+      }));
+      return;
+    }
+
     final repository = NetworkRepository();
     _showLoading();
     final result = await repository.addToFavorites(imageId: imageId);
@@ -112,6 +124,16 @@ class _DogsState extends State<DogsScreen> {
   }
 
   void _voteImage(String imageId, bool value) async {
+    final isLogin = await UserManager().isLogin;
+    if (!isLogin) {
+      if (!mounted) return;
+
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return const LoginScreen();
+      }));
+      return;
+    }
+
     final repository = NetworkRepository();
     _showLoading();
     final result = await repository.voteImage(imageId: imageId, value: value);

@@ -63,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 }),
             _HomeTabButton(
                 icon: "mine.png",
-                label: "品种",
+                label: "我的",
                 value: HomeTab.profile,
                 groupValue: _currentTab,
                 onTap: () {

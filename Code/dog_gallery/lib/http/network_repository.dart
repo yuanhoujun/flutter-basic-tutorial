@@ -1,5 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:dog_gallery/model/api.dart';
+import 'package:dog_gallery/model/constant.dart';
+import 'package:dog_gallery/model/favorite_image.dart';
+import 'package:dog_gallery/model/vote_image.dart';
 
 import '../model/breed.dart';
 import '../model/dog_image.dart';
@@ -21,9 +24,10 @@ class NetworkRepository {
     return _instance;
   }
 
-  Future<List<DogImage>> searchImages({required int limit}) async {
+  Future<List<DogImage>> searchImages(
+      {required int limit, int? breedId}) async {
     final response = await _dio.get(apiSearch,
-        queryParameters: {"limit": limit},
+        queryParameters: {"limit": limit, "size": "med", "breed_ids": breedId},
         options: Options(headers: {
           "x-api-key": apiKey,
           "Content-Type": "application/json"
@@ -72,6 +76,40 @@ class NetworkRepository {
       final List<dynamic> list = response.data ?? [];
       return list
           .map((e) => Breed.fromJson(e as Map<String, dynamic>))
+          .toList();
+    } else {
+      return [];
+    }
+  }
+
+  Future<List<FavoriteImage>> getFavoriteImage() async {
+    final response = await _dio.get(apiFavorites,
+        queryParameters: {"sub_id": userId},
+        options: Options(headers: {
+          "x-api-key": apiKey,
+          "Content-Type": "application/json"
+        }));
+    if (response.statusCode == 200) {
+      final List<dynamic> list = response.data;
+      return list
+          .map((e) => FavoriteImage.fromJson(e as Map<String, dynamic>))
+          .toList();
+    } else {
+      return [];
+    }
+  }
+
+  Future<List<VoteImage>> getVoteImage() async {
+    final response = await _dio.get(apiVotes,
+        queryParameters: {"sub_id": userId},
+        options: Options(headers: {
+          "x-api-key": apiKey,
+          "Content-Type": "application/json"
+        }));
+    if (response.statusCode == 200) {
+      final List<dynamic> list = response.data;
+      return list
+          .map((e) => VoteImage.fromJson(e as Map<String, dynamic>))
           .toList();
     } else {
       return [];
