@@ -5,6 +5,7 @@
 # 视频教程
 ### B站
 * [跟我一起学Flutter](https://www.bilibili.com/video/BV1oA4m1g7uN/)
+* [Dart速成班](https://www.bilibili.com/video/BV1pm41117o6/)
 
 # 案例
 * [象棋助手（跨平台象棋打谱和学习软件首选）](https://cca.yhdm360.cn)
